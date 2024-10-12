@@ -9,7 +9,7 @@ public class FinancialDataAnalysis {
             return 0.0;
         }
 
-        double sum = 0.0;
+        double sum = data.get(0);
         for (Double value : data) {
             sum += value;
         }
