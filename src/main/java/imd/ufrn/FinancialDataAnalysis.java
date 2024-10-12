@@ -1,48 +1,50 @@
 package imd.ufrn;
 
+import java.util.List;
+
 public class FinancialDataAnalysis {
 
-    public double calculateAverage(double[] data) {
-        if (data == null || data.length == 0) {
+    public double calculateAverage(List<Double> data) {
+        if (data == null || data.isEmpty()) {
             return 0.0;
         }
 
         double sum = 0.0;
-        for (double value : data) {
+        for (Double value : data) {
             sum += value;
         }
 
-        return sum / data.length;
+        return sum / data.size();
     }
 
-    public double calculateStandardDeviation(double[] data) {
-        if (data == null || data.length == 0) {
+    public double calculateStandardDeviation(List<Double> data) {
+        if (data == null || data.isEmpty()) {
             return 0.0;
         }
 
         double average = calculateAverage(data);
         double sumSquaredDifferences = 0.0;
 
-        for (double value : data) {
+        for (Double value : data) {
             double difference = value - average;
             sumSquaredDifferences += difference * difference;
         }
 
-        double variance = sumSquaredDifferences / (data.length - 1);
+        double variance = sumSquaredDifferences / (data.size() - 1);
         return Math.sqrt(variance);
     }
 
-    public double calculatePearsonCorrelation(double[] data1, double[] data2) {
-        if (data1 == null || data2 == null || data1.length != data2.length) {
+    public double calculatePearsonCorrelation(List<Double> data1, List<Double> data2) {
+        if (data1 == null || data2 == null || data1.size() != data2.size()) {
             return Double.NaN;
         }
 
-        int n = data1.length;
+        int n = data1.size();
         double sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0, sumY2 = 0;
 
         for (int i = 0; i < n; i++) {
-            double x = data1[i];
-            double y = data2[i];
+            double x = data1.get(i);
+            double y = data2.get(i);
 
             sumX += x;
             sumY += y;
